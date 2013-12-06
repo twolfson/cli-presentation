@@ -1,6 +1,7 @@
 var exec = require('child_process').exec;
 var TempDir = require('temporary').Dir;
 var wrench = require('wrench');
+var cliPresentationPath = __dirname + '/../bin/cli-presentation';
 
 describe('A cli-presentation', function () {
   // Create temporary directory to test within
@@ -15,13 +16,24 @@ describe('A cli-presentation', function () {
 
   // Copy over our temp files
   before(function (done) {
-    console.log(this.tmpPath);
     wrench.copyDirRecursive(__dirname + '/test-files/multi', this.tmpPath, {
       forceDelete: true
     }, done);
   });
 
-  it('', function () {
+  // Navigate to the temporary directory
+  before(function () {
+    process.chdir(this.tmpPath);
+  });
+
+  it('starts on the first slide (current)', function () {
 
   });
+
+  it('starts on the first slide (overview)', function (done) {
+    exec(cliPresentationPath + ' status', function (err, stdout, stderr) {
+      if (err) { return done(err); }
+    });
+  });
+
 });
