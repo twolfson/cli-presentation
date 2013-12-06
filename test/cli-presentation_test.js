@@ -27,8 +27,18 @@ describe('A cli-presentation', function () {
     process.chdir(this.tmpPath);
   });
 
-  it('starts on the first slide (current)', function () {
-
+  it('starts on the first slide (current)', function (done) {
+    exec(cliPresentationPath, function (err, stdout, stderr) {
+      console.log(stdout);
+      if (err) { return done(err); }
+      // expect(stdout).to.equal([
+      //   '* 0 1.js',
+      //   '  1 2.js',
+      //   '  2 3.js',
+      //   ''
+      // ].join('\n'));
+      done();
+    });
   });
 
   it('starts on the first slide (overview)', function (done) {
