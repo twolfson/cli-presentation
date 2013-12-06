@@ -80,11 +80,6 @@ describe('A cli-presentation', function () {
       });
     });
   });
-
-  // DEV: If we want to regression test `next` and `back` not exceeding
-  // boundaries, place those in an edge case test suite
-
-  // DEV: Separate test suite for first/last
 });
 
 describe('A cli-presentation', function () {
@@ -113,6 +108,49 @@ describe('A cli-presentation', function () {
           expect(this.stdout).to.equal('one\n');
         });
       });
+    });
+  });
+});
+
+describe('A cli-presentation', function () {
+  setupPresentation();
+
+  describe('jumping to the third slide', function () {
+    runCommand('slide 2');
+    it('navigates to the third slide', function () {
+      expect(this.stdout).to.equal('threethreethree\n');
+    });
+
+    describe('outputting the status', function () {
+      runCommand('status');
+      it('is on the last slide', function () {
+        expect(this.stdout).to.equal([
+          '  0 1.js',
+          '  1 2.js',
+          '* 2 3.js',
+          ''
+        ].join('\n'));
+      });
+    });
+  });
+});
+
+describe('A cli-presentation', function () {
+  setupPresentation();
+
+  describe('navigating to the previous slide from the first one', function () {
+    runCommand('slide 0');
+    runCommand('back');
+    it('remains on the first slide', function () {
+      expect(this.stdout).to.equal('one\n');
+    });
+  });
+
+  describe('navigating to the next slide from the last one', function () {
+    runCommand('slide 2');
+    runCommand('next');
+    it('remains on the last slide', function () {
+      expect(this.stdout).to.equal('threethreethree\n');
     });
   });
 });
