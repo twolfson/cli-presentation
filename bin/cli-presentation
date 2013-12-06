@@ -1,0 +1,14 @@
+var CliPresentation = require('../');
+
+// TODO: Can we get some tab completion for this?
+
+// Load in presentation info
+// TODO: This should sniff for `presentation/config.{yml,json,js}`, `config.{yml,json,js}`
+// TODO: Easily done via `require` but the `fs.existsSync` is excess I don't want to deal with right now
+// TODO: Allow override via `--config`
+// var yaml = require('js-yaml');
+// var config = require('../presentation/config.yml');
+
+
+// Parse the arguments
+program.parse(process.argv);
