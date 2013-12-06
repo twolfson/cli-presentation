@@ -24,10 +24,10 @@ $ cli-presentation status
 ## Getting Started
 Install the module with: `npm install cli-presentation -g`
 
-Set up a `config` to read from:
+Set up a `cli-presentation.yml` config to read from:
 
 ```bash
-cat > config.yml <<EOF
+cat > cli-presentation.yml <<EOF
 slides:
   - hello.js
   - world.js
@@ -59,18 +59,52 @@ cli-presentation next
 ```
 
 ## Documentation
-_(Coming soon)_
+`cli-presentation` exposes a constructor `CliPresentation` as its `module.exports`.
 
-// TODO: Make .bin extremely thin
-// DEV: This allows for aliasing without aliasing on a per project basis
-// TODO: Maybe leave it in `bin` but with a `module.parent` check
+### `new CliPresentation(options)`
+Constructor for a new CLI presentation
+
+- options `String|Object` - If options is a string, it is assumed to be a path and resolved via `require`
+    - cwd `String` - Directory to locate slides and database. By default, this is `process.cwd()`
+    - db `String` - Path to database. If relative, it will resolve from `cwd`
+
+### `CliPresentation.goToSlide(slide, cb)`
+Navigate and output the content of a slide
+
+- slide `Number` - Index of slide to navigate to (zero based)
+- cb `Function` - Optional callback function with signature `function (err) {}`. If not provided and an error is encountered, it will be thrown.
+
+### `CliPresentation.goToCurrent()`
+Output the current slide
+
+### `CliPresentation.goToFirst()`
+Output the beginning slide
+
+### `CliPresentation.goToLast()`
+Output the final slide
+
+### `CliPresentation.goToNext()`
+Output the following slide
+
+### `CliPresentation.goToPrevious()`
+Output the previous slide
+
+### `CliPresentation.status()`
+Output the presentation progress
+
+```bash
+$ cli-presentation status  # on second slide
+  0 title.js
+* 1 overview.js
+  2 create-a-repo.js
+```
+
+### Executable wrapping
+`CliPresentation` presents a `.cli()` class method which allows for defining your own executable.
 
 ```js
 require('cli-presentation').cli(/* config */);
 ```
-
-## Examples
-_(Coming soon)_
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
