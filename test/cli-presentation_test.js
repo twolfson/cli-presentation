@@ -1,4 +1,5 @@
 var exec = require('child_process').exec;
+var expect = require('chai').expect;
 var TempDir = require('temporary').Dir;
 var wrench = require('wrench');
 var cliPresentationPath = __dirname + '/../bin/cli-presentation';
@@ -31,9 +32,16 @@ describe('A cli-presentation', function () {
   });
 
   it('starts on the first slide (overview)', function (done) {
+    // Run `cli-presentation status` and assert output
     exec(cliPresentationPath + ' status', function (err, stdout, stderr) {
       if (err) { return done(err); }
-      console.log(stdout);
+      expect(stdout).to.equal([
+        '* 0 1.js',
+        '  1 2.js',
+        '  2 3.js',
+        ''
+      ].join('\n'));
+      done();
     });
   });
 
