@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var CliPresentation = require('../');
 
 // TODO: Can we get some tab completion for this?
