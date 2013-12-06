@@ -48,6 +48,14 @@ cli-presentation next
 ## Documentation
 _(Coming soon)_
 
+// TODO: Make .bin extremely thin
+// DEV: This allows for aliasing without aliasing on a per project basis
+// TODO: Maybe leave it in `bin` but with a `module.parent` check
+
+```js
+require('cli-presentation').cli(/* config */);
+```
+
 ## Examples
 _(Coming soon)_
 
