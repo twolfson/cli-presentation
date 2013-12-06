@@ -12,7 +12,9 @@ describe('A cli-presentation', function () {
   });
   after(function (done) {
     // DEV: We cannot use temporary to clean up since it won't be empty
-    wrench.rmdirRecursive(this.tmpPath, done);
+    // wrench.rmdirRecursive(this.tmpPath, done);
+    console.log(cliPresentationPath);
+    console.log(this.tmpPath);
   });
 
   // Copy over our temp files
