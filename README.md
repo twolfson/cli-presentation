@@ -2,12 +2,47 @@
 
 Give presentations from your terminal
 
-## Getting Started
-Install the module with: `npm install cli-presentation`
+This was built from the library created in [Develop Faster][].
 
-```javascript
-var cli_presentation = require('cli-presentation');
-cli_presentation.awesome(); // "awesome"
+[Develop Faster]: https://github.com/twolfson/develop-faster-presentation
+
+TODO: GIF demonstrating library
+
+## Getting Started
+Install the module with: `npm install cli-presentation -g`
+
+Set up a `config` to read from:
+
+```bash
+cat > config.yml <<EOF
+slides:
+  - hello.js
+  - world.js
+EOF
+
+cat > hello.js <<EOF
+module.exports = function () {
+  // TODO: If a string is returned, it will be logged.
+  // Otherwise, it is assumed the slide logged its own content.
+  return 'Hello';
+};
+EOF
+
+cat > hello.js <<EOF
+module.exports = function () {
+  return 'World!';
+};
+EOF
+```
+
+In a terminal:
+
+```bash
+cli-presentation
+# Outputs: Hello
+
+cli-presentation next
+# Outputs: World!
 ```
 
 ## Documentation
