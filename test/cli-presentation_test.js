@@ -80,7 +80,8 @@ describe('A cli-presentation', function () {
     });
   });
 
-
   // DEV: If we want to regression test `next` and `back` not exceeding
   // boundaries, place those in an edge case test suite
+
+  // DEV: Separate test suite for first/last
 });
