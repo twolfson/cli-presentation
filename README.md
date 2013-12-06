@@ -6,7 +6,20 @@ This was built from the library created in [Develop Faster][].
 
 [Develop Faster]: https://github.com/twolfson/develop-faster-presentation
 
-TODO: GIF demonstrating library
+```bash
+$ cli-presentation status
+* 0 title.js
+  1 overview.js
+  2 create-a-repo.js
+  3 write-some-code-server.js
+  4 compile-assets.js
+  5 write-some-code-browser.js
+  6 commit.js
+  7 write-some-tests.js
+  8 release.js
+  9 reflection.js
+  10 title.js
+```
 
 ## Getting Started
 Install the module with: `npm install cli-presentation -g`
