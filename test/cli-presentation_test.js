@@ -33,6 +33,7 @@ describe('A cli-presentation', function () {
   it('starts on the first slide (overview)', function (done) {
     exec(cliPresentationPath + ' status', function (err, stdout, stderr) {
       if (err) { return done(err); }
+      console.log(stdout);
     });
   });
 
