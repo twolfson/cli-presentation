@@ -4,7 +4,7 @@ var TempDir = require('temporary').Dir;
 var wrench = require('wrench');
 var cliPresentationPath = __dirname + '/../bin/cli-presentation';
 
-describe('A cli-presentation', function () {
+function setupPresentation() {
   // Create temporary directory to test within
   before(function () {
     this.tmpDir = new TempDir();
@@ -26,6 +26,21 @@ describe('A cli-presentation', function () {
   before(function () {
     process.chdir(this.tmpPath);
   });
+}
+
+function runCommand(args) {
+  before(function (done) {
+    var that = this;
+    exec(cliPresentationPath + ' ' + args, function (err, stdout, stderr) {
+      that.stdout = stdout;
+      that.stderr = stderr;
+      done(err);
+    });
+  });
+}
+
+describe('A cli-presentation', function () {
+  setupPresentation();
 
   it('starts on the first slide (current)', function (done) {
     // Get the first slide as the current slide
@@ -51,28 +66,14 @@ describe('A cli-presentation', function () {
   });
 
   describe('moving to the next slide', function () {
-    before(function (done) {
-      var that = this;
-      exec(cliPresentationPath + ' next', function (err, stdout, stderr) {
-        that.stdout = stdout;
-        that.stderr = stderr;
-        done(err);
-      });
-    });
+    runCommand('next');
 
     it('outputs the second slide\'s contents', function () {
       expect(this.stdout).to.equal('twotwo\n');
     });
 
     describe('moving to the next slide', function () {
-      before(function (done) {
-        var that = this;
-        exec(cliPresentationPath + ' next', function (err, stdout, stderr) {
-          that.stdout = stdout;
-          that.stderr = stderr;
-          done(err);
-        });
-      });
+      runCommand('next');
 
       it('outputs the third slide\'s contents', function () {
         expect(this.stdout).to.equal('threethreethree\n');
@@ -84,4 +85,26 @@ describe('A cli-presentation', function () {
   // boundaries, place those in an edge case test suite
 
   // DEV: Separate test suite for first/last
+});
+
+describe('A cli-presentation', function () {
+  setupPresentation();
+
+  describe('moving to the last slide', function () {
+    runCommand('last');
+
+    it('navigates to the final slide', function () {
+
+    });
+    describe('outputting the status', function () {
+      it('is on the last slide', function () {
+
+      });
+      describe('moving to the first slide', function () {
+        it('goes to the first slide', function () {
+
+        });
+      });
+    });
+  });
 });
