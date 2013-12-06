@@ -29,19 +29,13 @@ describe('A cli-presentation', function () {
 
   it('starts on the first slide (current)', function (done) {
     exec(cliPresentationPath, function (err, stdout, stderr) {
-      console.log(stdout);
       if (err) { return done(err); }
-      // expect(stdout).to.equal([
-      //   '* 0 1.js',
-      //   '  1 2.js',
-      //   '  2 3.js',
-      //   ''
-      // ].join('\n'));
+      expect(stdout).to.equal('11111111\n');
       done();
     });
   });
 
-  it('starts on the first slide (overview)', function (done) {
+  it.skip('starts on the first slide (overview)', function (done) {
     // Run `cli-presentation status` and assert output
     exec(cliPresentationPath + ' status', function (err, stdout, stderr) {
       if (err) { return done(err); }
