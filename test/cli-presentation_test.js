@@ -92,17 +92,25 @@ describe('A cli-presentation', function () {
 
   describe('moving to the last slide', function () {
     runCommand('last');
-
     it('navigates to the final slide', function () {
-
+      expect(this.stdout).to.equal('threethreethree\n');
     });
+
     describe('outputting the status', function () {
+      runCommand('status');
       it('is on the last slide', function () {
-
+        expect(this.stdout).to.equal([
+          '  0 1.js',
+          '  1 2.js',
+          '* 2 3.js',
+          ''
+        ].join('\n'));
       });
-      describe('moving to the first slide', function () {
-        it('goes to the first slide', function () {
 
+      describe('moving to the first slide', function () {
+        runCommand('first');
+        it('goes to the first slide', function () {
+          expect(this.stdout).to.equal('one\n');
         });
       });
     });
