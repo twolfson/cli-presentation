@@ -28,6 +28,7 @@ describe('A cli-presentation', function () {
   });
 
   it('starts on the first slide (current)', function (done) {
+    // Get the first slide as the current slide
     exec(cliPresentationPath, function (err, stdout, stderr) {
       if (err) { return done(err); }
       expect(stdout).to.equal('11111111\n');
@@ -49,4 +50,21 @@ describe('A cli-presentation', function () {
     });
   });
 
+  describe('moving to the next slide', function () {
+    before(function (done) {
+      var that = this;
+      exec(cliPresentationPath + ' next', function (err, stdout, stderr) {
+        that.stdout = stdout;
+        that.stderr = stderr;
+        done(err);
+      });
+    });
+
+    it('outputs the second slides contents', function () {
+      expect(this.stdout).to.equal('twotwotwo\n');
+    });
+  });
+
+  // DEV: If we want to regression test `next` and `back` not exceeding
+  // boundaries, place those in an edge case test suite
 });
