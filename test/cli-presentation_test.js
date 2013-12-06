@@ -12,9 +12,7 @@ describe('A cli-presentation', function () {
   });
   after(function (done) {
     // DEV: We cannot use temporary to clean up since it won't be empty
-    // wrench.rmdirRecursive(this.tmpPath, done);
-    console.log(cliPresentationPath);
-    console.log(this.tmpPath);
+    wrench.rmdirRecursive(this.tmpPath, done);
   });
 
   // Copy over our temp files
@@ -41,13 +39,12 @@ describe('A cli-presentation', function () {
     // Run `cli-presentation status` and assert output
     exec(cliPresentationPath + ' status', function (err, stdout, stderr) {
       if (err) { return done(err); }
-      console.log(stdout);
-      // expect(stdout).to.equal([
-      //   '* 0 1.js',
-      //   '  1 2.js',
-      //   '  2 3.js',
-      //   ''
-      // ].join('\n'));
+      expect(stdout).to.equal([
+        '* 0 1.js',
+        '  1 2.js',
+        '  2 3.js',
+        ''
+      ].join('\n'));
       done();
     });
   });
