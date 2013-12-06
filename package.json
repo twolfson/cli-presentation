@@ -1,0 +1,43 @@
+{
+  "name": "cli-presentation",
+  "description": "Give presentations from your terminal",
+  "version": "0.1.0",
+  "homepage": "https://github.com/twolfson/cli-presentation",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twolfson/cli-presentation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twolfson/cli-presentation/issues"
+  },
+  "licenses": [
+    {
+      "type": "UNLICENSE",
+      "url": "https://github.com/twolfson/cli-presentation/blob/master/UNLICENSE"
+    }
+  ],
+  "main": "lib/cli-presentation",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.11.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.0"
+  },
+  "keywords": [
+    "cli",
+    "presentation",
+    "terminal"
+  ]
+}
