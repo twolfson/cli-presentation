@@ -58,6 +58,30 @@ cli-presentation next
 # Outputs: World!
 ```
 
+## Executable interface
+`cli-presentation` installs a CLI executable `cli-presentation`. It provides the following commands:
+
+```js
+$ cli-presentation --help
+
+  Usage: cli-presentation [options] [command]
+
+  Commands:
+
+    slide <slide>          Jump to a specific slide
+    first                  Go back to the beginning
+    last                   Jump to the final slide
+    next                   Move following by one slide
+    previous               Move back by one slide
+    back                   Alias for previous
+    status                 Get overview of slides
+
+  Options:
+
+    -h, --help             output usage information
+    -c, --config <config>  Path to configuration file (accepts .js, .json, .yml)
+```
+
 ## Documentation
 `cli-presentation` exposes a constructor `CliPresentation` as its `module.exports`.
 
@@ -99,11 +123,17 @@ $ cli-presentation status  # on second slide
   2 create-a-repo.js
 ```
 
-### Executable wrapping
-`CliPresentation` presents a `.cli()` class method which allows for defining your own executable.
+### `CliPresentation.cli()`
+Return a [commander][] instance with the bindings of the CLI interface.
+
+[commander]: https://github.com/visionmedia/commander.js
+
+By using this, you can define your custom alias and additional commands
 
 ```js
-require('cli-presentation').cli(/* config */);
+// Mimic behavior from `cli-presentation`
+var yaml = require('js-yaml'); // Enables loading of .yml files
+require('cli-presentation').cli().parse(process.argv);
 ```
 
 ## Contributing
