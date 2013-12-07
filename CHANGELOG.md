@@ -1,4 +1,6 @@
 # cli-presentation changelog
+0.3.1 - Added documentation for outputting from slides
+
 0.3.0 - Added ability to override `cli` defaults
 
 0.2.0 - Added regression for usage of `--config`
