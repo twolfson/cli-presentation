@@ -1,7 +1,7 @@
 {
   "name": "cli-presentation",
   "description": "Give presentations from your terminal",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "https://github.com/twolfson/cli-presentation",
   "author": {
     "name": "Todd Wolfson",
