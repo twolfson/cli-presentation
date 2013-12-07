@@ -83,7 +83,9 @@ $ cli-presentation --help
 ```
 
 ## Slide format
-Slides are loaded via `require` and expected to return a `Function` as their `module.exports`. When a slide is presented, its `module.exports` is run. If the `module.exports` returns a `String`, the output will be processed via `console.log`.
+Slides are loaded via `require` and expected to return a `Function` as their `module.exports`.
+
+When a slide is presented, its `module.exports` is run. If the `module.exports` returns a `String`, the output will be processed via `console.log`.
 
 **Example**: Outputting from the slide
 
