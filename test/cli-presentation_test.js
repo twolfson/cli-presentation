@@ -154,3 +154,20 @@ describe('A cli-presentation', function () {
     });
   });
 });
+
+describe('A cli-presentation run from a remote directory', function () {
+  setupPresentation();
+  before(function moveAwayFromPresentation () {
+    process.chdir(__dirname);
+  });
+  runCommand('status --config ' + this.tmpPath + '/cli-presentation');
+
+  it('resolves slides relative to the config', function () {
+    expect(this.stdout).to.equal([
+      '* 0 1.js',
+      '  1 2.js',
+      '  2 3.js',
+      ''
+    ].join('\n'));
+  });
+});
