@@ -28,14 +28,19 @@ function setupPresentation() {
   });
 }
 
+function _runCommand(args, done) {
+  var that = this;
+  console.log('running');
+  exec(cliPresentationPath + ' ' + args, function (err, stdout, stderr) {
+    console.log('execd');
+    that.stdout = stdout;
+    that.stderr = stderr;
+    done(err);
+  });
+}
 function runCommand(args) {
   before(function (done) {
-    var that = this;
-    exec(cliPresentationPath + ' ' + args, function (err, stdout, stderr) {
-      that.stdout = stdout;
-      that.stderr = stderr;
-      done(err);
-    });
+    _runCommand.call(this, args, done);
   });
 }
 
@@ -155,12 +160,14 @@ describe('A cli-presentation', function () {
   });
 });
 
-describe('A cli-presentation run from a remote directory', function () {
+describe.only('A cli-presentation run from a remote directory', function () {
   setupPresentation();
   before(function moveAwayFromPresentation () {
     process.chdir(__dirname);
   });
-  runCommand('status --config ' + this.tmpPath + '/cli-presentation');
+  before(function runStatusCommand (done) {
+    _runCommand.call(this, 'status --config ' + this.tmpPath + '/cli-presentation', done);
+  });
 
   it('resolves slides relative to the config', function () {
     expect(this.stdout).to.equal([
