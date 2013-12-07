@@ -82,6 +82,35 @@ $ cli-presentation --help
     -c, --config <config>  Path to configuration file (accepts .js, .json, .yml)
 ```
 
+## Slide format
+Slides are loaded via `require` and expected to return a `Function` as their `module.exports`. When a slide is presented, its `module.exports` is run. If the `module.exports` returns a `String`, the output will be processed via `console.log`.
+
+**Example**: Outputting from the slide
+
+```js
+// Inside of 1.js
+module.exports = function () {
+  console.log('Hello World!');
+};
+
+// From the command line
+$ cli-presentation 1
+Hello World!
+```
+
+**Example**: Returning content from the slide
+
+```js
+// Inside of 2.js
+module.exports = function () {
+  return 'Nyan cat!';
+};
+
+// From the command line
+$ cli-presentation 2
+Nyan cat!
+```
+
 ## Documentation
 `cli-presentation` exposes a constructor `CliPresentation` as its `module.exports`.
 
