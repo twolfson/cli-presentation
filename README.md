@@ -123,8 +123,11 @@ $ cli-presentation status  # on second slide
   2 create-a-repo.js
 ```
 
-### `CliPresentation.cli()`
+### `CliPresentation.cli(defaults)`
 Return a [commander][] instance with the bindings of the CLI interface.
+
+- defaults `Object` - Override default CLI values
+    - config `String` - Default path to presentation configuration. By default, this is `cli-presentation`
 
 [commander]: https://github.com/visionmedia/commander.js
 
@@ -134,6 +137,15 @@ By using this, you can define your custom alias and additional commands
 // Mimic behavior from `cli-presentation`
 var yaml = require('js-yaml'); // Enables loading of .yml files
 require('cli-presentation').cli().parse(process.argv);
+```
+
+This is an example of using `defaults` to override `config`
+
+```js
+var CliPresentation = require('cli-presentation');
+CliPresentation.cli({
+  config: 'presentation/config'
+}).parse(process.argv);
 ```
 
 ## Contributing
