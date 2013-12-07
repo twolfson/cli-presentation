@@ -30,9 +30,7 @@ function setupPresentation() {
 
 function _runCommand(args, done) {
   var that = this;
-  console.log('running');
   exec(cliPresentationPath + ' ' + args, function (err, stdout, stderr) {
-    console.log('execd');
     that.stdout = stdout;
     that.stderr = stderr;
     done(err);
@@ -160,7 +158,7 @@ describe('A cli-presentation', function () {
   });
 });
 
-describe.only('A cli-presentation run from a remote directory', function () {
+describe('A cli-presentation run from a remote directory', function () {
   setupPresentation();
   before(function moveAwayFromPresentation () {
     process.chdir(__dirname);
