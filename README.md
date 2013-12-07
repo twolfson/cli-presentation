@@ -167,7 +167,11 @@ By using this, you can define your custom alias and additional commands
 ```js
 // Mimic behavior from `cli-presentation`
 var yaml = require('js-yaml'); // Enables loading of .yml files
-require('cli-presentation').cli().parse(process.argv);
+require('cli-presentation')
+  .cli()
+  // OPTIONAL: Add `--version` from `package.json`
+  .version(require('../package.json').version)
+  .parse(process.argv);
 ```
 
 This is an example of using `defaults` to override `config`
