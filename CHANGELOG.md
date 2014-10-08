@@ -1,4 +1,6 @@
 # cli-presentation changelog
+0.3.4 - Upgraded `npm` in Travis CI to fix `node@0.8` issue
+
 0.3.3 - Fixed file typo in README via @muchweb in #3
 
 0.3.2 - Document `.version` call in README
