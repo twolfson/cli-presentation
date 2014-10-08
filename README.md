@@ -41,7 +41,7 @@ module.exports = function () {
 };
 EOF
 
-cat > hello.js <<EOF
+cat > world.js <<EOF
 module.exports = function () {
   return 'World!';
 };
